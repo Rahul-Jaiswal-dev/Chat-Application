@@ -1,0 +1,43 @@
+.client1 {
+  padding: 15px;
+  grid-area: client1;
+  background-color: lightgray;
+  margin-left: 15px;
+}
+.client2 {
+  padding: 15px;
+  grid-area: client2;
+  background-color: lightgray;
+  margin-right: 15px;
+}
+
+.grid-container {
+  display: grid;
+  grid-gap: 15px;
+  grid-template-areas: "client1 client2";
+}
+
+.clientMessages {
+  height: 380px;
+  overflow-y: auto;
+  margin-bottom: 18px;
+}
+
+@media screen and (max-width: 768px) {
+  .client1 {
+    margin-right: 15px;
+  }
+  .client2 {
+    margin-left: 15px;
+  }
+  .grid-container {
+    grid-gap: 15px;
+    grid-template-areas: "client1" "client2";
+  }
+  .clientMessages {
+    height: 160px;
+  }
+}
+a:hover {
+  color: grey;
+}
