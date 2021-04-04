@@ -23,7 +23,7 @@
   margin-bottom: 18px;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1000px) {
   .client1 {
     margin-right: 15px;
   }
