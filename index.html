@@ -59,7 +59,7 @@
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Type Message here........" id="client1Input" />
           <div class="input-group-append">
-            <button class="btn btn-success" type="submit" onclick="ClientMessagehandler('client1Input')">Send</button>
+            <button class="btn btn-success" type="submit" onclick="ClientMessagehandler('client1Input')" id="client1Button">Send</button>
           </div>
         </div>
       </div>
@@ -69,12 +69,25 @@
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Type Message here........" id="client2Input" />
           <div class="input-group-append">
-            <button class="btn btn-success" type="submit" onclick="ClientMessagehandler('client2Input')">Send</button>
+            <button class="btn btn-success" id="client2Button" type="submit" onclick="ClientMessagehandler('client2Input')">Send</button>
           </div>
         </div>
       </div>
     </div>
     <script>
+      document.getElementById("client1Input").addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          document.getElementById("client1Button").click();
+        }
+      });
+      document.getElementById("client2Input").addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          document.getElementById("client2Button").click();
+        }
+      });
+
       function ClientMessagehandler(sender) {
         let payload = sender == "client1Input" ? document.getElementById("client1Input").value : document.getElementById("client2Input").value;
         payload = payload.trim();
@@ -89,7 +102,6 @@
         divClient2.style.marginTop = "8px";
         divClient2.style.width = "80%";
         divClient2.style.overflowY = "auto";
-
         if (sender == "client1Input") {
           divClient1.className = "bg-success text-white";
           divClient1.style.marginLeft = "20%";
@@ -110,6 +122,8 @@
         const clientdDivs = document.getElementsByClassName("clientMessages");
         clientdDivs[0].appendChild(divClient1);
         clientdDivs[1].appendChild(divClient2);
+        clientdDivs[0].scrollTop = clientdDivs[0].scrollHeight;
+        clientdDivs[1].scrollTop = clientdDivs[1].scrollHeight;
       }
     </script>
   </body>
