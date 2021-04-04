@@ -23,7 +23,7 @@
   margin-bottom: 18px;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 900px) {
   .client1 {
     margin-right: 15px;
   }
@@ -35,7 +35,7 @@
     grid-template-areas: "client1" "client2";
   }
   .clientMessages {
-    height: 160px;
+    height: 350px;
   }
 }
 a:hover {
