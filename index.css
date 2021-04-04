@@ -32,10 +32,11 @@
   }
   .grid-container {
     grid-gap: 15px;
+    height: 50%;
     grid-template-areas: "client1" "client2";
   }
   .clientMessages {
-    height: 650px;
+    height: 50%;
   }
 }
 a:hover {
