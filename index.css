@@ -35,7 +35,7 @@
     grid-template-areas: "client1" "client2";
   }
   .clientMessages {
-    height: 350px;
+    height: 650px;
   }
 }
 a:hover {
