@@ -32,7 +32,7 @@
   }
   .grid-container {
     grid-gap: 15px;
-    height: 50%;
+    height: 1000px;
     grid-template-areas: "client1" "client2";
   }
   .clientMessages {
