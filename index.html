@@ -19,6 +19,9 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+    <!-- Font Awesome Icons  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
     <!-- Local Stylesheet File -->
     <link rel="stylesheet" href="index.css" />
 
@@ -64,7 +67,8 @@
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Type Message here........" id="client1Input" />
           <div class="input-group-append">
-            <button class="btn btn-success" type="submit" onclick="ClientMessagehandler('client1Input')" id="client1Button">Send</button>
+            <button class="btn btn-success" type="submit" onclick="ClientMessageHandler('client1Input')" id="client1Button">Send</button>
+            <button class="btn btn-info" type="submit" onclick="ClientMessageDeleteHandler('client1')"><i class="fa fa-trash-o"></i></button>
           </div>
         </div>
       </div>
@@ -74,7 +78,8 @@
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Type Message here........" id="client2Input" />
           <div class="input-group-append">
-            <button class="btn btn-success" id="client2Button" type="submit" onclick="ClientMessagehandler('client2Input')">Send</button>
+            <button class="btn btn-success" id="client2Button" type="submit" onclick="ClientMessageHandler('client2Input')">Send</button>
+            <button class="btn btn-info" type="submit" onclick="ClientMessageDeleteHandler('client2')"><i class="fa fa-trash-o"></i></button>
           </div>
         </div>
       </div>
@@ -96,7 +101,7 @@
       const x = window.matchMedia("(max-width: 1000px)");
       styleChangeOnDeviceChange(x); // Call listener function at run time
       x.addListener(styleChangeOnDeviceChange); // Attach listener function on state changes
-      function ClientMessagehandler(sender) {
+      function ClientMessageHandler(sender) {
         let payload = sender == "client1Input" ? document.getElementById("client1Input").value : document.getElementById("client2Input").value;
         payload = payload.trim();
         if (payload == "" || payload == null || payload == undefined) return;
@@ -135,11 +140,26 @@
       function styleChangeOnDeviceChange(x) {
         if (x.matches) {
           // If media query matches
-          clientdDivs[0].style.height = (document.querySelector(".grid-container").offsetHeight * 0.27).toString() + "px";
-          clientdDivs[1].style.height = (document.querySelector(".grid-container").offsetHeight * 0.27).toString() + "px";
+          clientdDivs[0].style.height = (document.querySelector(".grid-container").offsetHeight * 0.28).toString() + "px";
+          clientdDivs[1].style.height = (document.querySelector(".grid-container").offsetHeight * 0.28).toString() + "px";
         } else {
           clientdDivs[0].style.height = (document.querySelector(".grid-container").offsetHeight * 0.75).toString() + "px";
           clientdDivs[1].style.height = (document.querySelector(".grid-container").offsetHeight * 0.75).toString() + "px";
+        }
+      }
+      function ClientMessageDeleteHandler(sender) {
+        if (sender == "client1") {
+          let child = clientdDivs[0].lastElementChild;
+          while (child) {
+            clientdDivs[0].removeChild(child);
+            child = clientdDivs[0].lastElementChild;
+          }
+        } else {
+          let child = clientdDivs[1].lastElementChild;
+          while (child) {
+            clientdDivs[1].removeChild(child);
+            child = clientdDivs[1].lastElementChild;
+          }
         }
       }
     </script>
