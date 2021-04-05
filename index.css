@@ -1,3 +1,10 @@
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
 .client1 {
   padding: 15px;
   grid-area: client1;
@@ -15,10 +22,10 @@
   display: grid;
   grid-gap: 15px;
   grid-template-areas: "client1 client2";
+  height: 85%;
 }
 
 .clientMessages {
-  height: 380px;
   overflow-y: auto;
   margin-bottom: 18px;
 }
@@ -36,9 +43,6 @@
   .grid-container {
     grid-gap: 15px;
     grid-template-areas: "client1" "client2";
-  }
-  .clientMessages {
-    height: 160px;
   }
 }
 a:hover {
