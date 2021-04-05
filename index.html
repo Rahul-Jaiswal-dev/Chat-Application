@@ -59,6 +59,10 @@
     </div>
     <!-- The Modal -->
 
+    <div id="contextMenu" class="context-menu" style="display: none">
+      <button class="btn btn-white" type="submit" onclick="IndividualMessageRemove()"><i class="fa fa-trash-o"></i></button>
+    </div>
+
     <h1 style="background-color: black; color: white; padding: 10px">Chat Application</h1>
     <div class="grid-container">
       <div class="client1">
@@ -98,9 +102,11 @@
         }
       });
       const clientdDivs = document.getElementsByClassName("clientMessages");
+      let divToDelete;
       const x = window.matchMedia("(max-width: 1000px)");
       styleChangeOnDeviceChange(x); // Call listener function at run time
       x.addListener(styleChangeOnDeviceChange); // Attach listener function on state changes
+
       function ClientMessageHandler(sender) {
         let payload = sender == "client1Input" ? document.getElementById("client1Input").value : document.getElementById("client2Input").value;
         payload = payload.trim();
@@ -132,11 +138,21 @@
         // textNodeClient1.style.overflowY = "auto";
         divClient1.appendChild(textNodeClient1);
         divClient2.appendChild(textNodeClient2);
+        window.addEventListener("click", hideMenu);
+        window.addEventListener("contextmenu", hideMenu);
+        window.addEventListener("dblclick", hideMenu);
+        divClient1.addEventListener("click", hideMenu);
+        divClient1.addEventListener("contextmenu", rightClick);
+        divClient1.addEventListener("dblclick", rightClick);
+        divClient2.addEventListener("click", hideMenu);
+        divClient2.addEventListener("contextmenu", rightClick);
+        divClient2.addEventListener("dblclick", rightClick);
         clientdDivs[0].appendChild(divClient1);
         clientdDivs[1].appendChild(divClient2);
         clientdDivs[0].scrollTop = clientdDivs[0].scrollHeight;
         clientdDivs[1].scrollTop = clientdDivs[1].scrollHeight;
       }
+
       function styleChangeOnDeviceChange(x) {
         if (x.matches) {
           // If media query matches
@@ -147,6 +163,7 @@
           clientdDivs[1].style.height = (document.querySelector(".grid-container").offsetHeight * 0.75).toString() + "px";
         }
       }
+
       function ClientMessageDeleteHandler(sender) {
         if (sender == "client1") {
           let child = clientdDivs[0].lastElementChild;
@@ -161,6 +178,26 @@
             child = clientdDivs[1].lastElementChild;
           }
         }
+      }
+
+      function hideMenu() {
+        document.getElementById("contextMenu").style.display = "none";
+      }
+
+      function rightClick(event) {
+        event.preventDefault();
+        if (document.getElementById("contextMenu").style.display == "block") hideMenu();
+        setTimeout(() => {
+          var menu = document.getElementById("contextMenu");
+          menu.style.display = "block";
+          menu.style.left = event.pageX + "px";
+          menu.style.top = event.pageY + "px";
+          divToDelete = event.path[0];
+        }, 2);
+      }
+
+      function IndividualMessageRemove() {
+        divToDelete.remove();
       }
     </script>
   </body>

@@ -48,3 +48,10 @@ body {
 a:hover {
   color: grey;
 }
+
+.context-menu {
+  position: absolute;
+  text-align: center;
+  background: lightgray;
+  border: 1px solid black;
+}
